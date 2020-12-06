@@ -1,3 +1,4 @@
+
 seat_row([F|_], RangeA, _, 10, Out) :-
 	char_code('F', F),
 	Out is (RangeA).
@@ -34,4 +35,18 @@ seat_row([B|T], RangeA, RangeB, Position, Out) :-
 	seat_row(T, NewStart, RangeB, NewPosition, Out).
 
 
+
+
+seat(Out) :-
+	input(Input),
+	member(I, Input),
+	string_codes(I, I2),
+	seat_row(I2, 0, 127, 1, Out).
+
+
+
+
+maxseat(Out) :-
+	bagof(X, seat(X),  Out1),
+	max_list(Out1, Out).
 
