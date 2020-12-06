@@ -50,3 +50,15 @@ maxseat(Out) :-
 	bagof(X, seat(X),  Out1),
 	max_list(Out1, Out).
 
+missingid([H|_], Index, Index) :-
+	Index \= H.
+
+missingid([H|T], H, Out) :-
+	NextIndex is H+1,
+	missingid(T, NextIndex, Out).
+
+
+missingid(Out) :-
+	bagof(X, seat(X),  Out1),
+	sort(Out1, Out2),
+	missingid(Out2, 91, Out).
