@@ -6,17 +6,17 @@ contains(Bag, -, 0) :- has(Bag,  []).
 
 contains(Bag, Target, 1) :-
               has(Bag, InnerBags),
-              member(Target, InnerBags).
+              member([_,Target], InnerBags).
               
 contains(Bag, Target, 1) :-
               has(Bag, InnerBags),
-              member(X, InnerBags),
+              member([_,X], InnerBags),
               contains(X, Target, 1).
 
 
 contains(Bag, Target, 0) :-
               has(Bag, InnerBags),
-              not(member(X, InnerBags)),
+              not(member([_,X], InnerBags)),
               contains(X, Target, 0).
 
 count(Out) :-
