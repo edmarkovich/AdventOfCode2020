@@ -1,4 +1,4 @@
-%consult("trans.rl").
+
 
 bags(X) :- findall(A, has(A,_), X).
 
@@ -24,3 +24,21 @@ count(Out) :-
          sort(Out1, Out2),
          length(Out2, Out).
          
+/* Part Two */
+
+contents([], 0).
+contents([[Count, Bag]|T], Out) :-
+              bag_plus_contents(Bag, Out1),
+              Out2 is Out1 * Count,
+              contents(T, Out3),
+              Out is Out2 + Out3.
+
+              
+bag_plus_contents(B, Out) :-
+     has(B, Contents),
+     contents(Contents, Out1),
+     Out is Out1 +1 .
+     % Don't forget to subtract one from final answer since we don't count top-level bag"
+
+
+
