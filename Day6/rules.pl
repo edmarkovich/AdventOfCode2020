@@ -18,3 +18,14 @@ all_groups(X) :-
 all_lengths(X) :-
                bagof(Q, all_groups(Q), T),
                sum_list(T, X).
+
+
+
+
+
+
+
+
+
+
+
