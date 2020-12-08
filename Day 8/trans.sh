@@ -1,4 +1,4 @@
-cat -n data.txt | 
+cat -n data.txt |
 sed "s/^ */line(/g" | 
 sed "s/\s/,/g" | 
 sed "s/$/)./g" |
