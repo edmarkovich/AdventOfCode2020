@@ -13,7 +13,6 @@ GateType s2gt(const string &gt) {
 		return AND;
 }
 
-int depth = 0;
 
 
 class WireValue {
@@ -21,12 +20,6 @@ class WireValue {
 };
 
 unordered_map<string, WireValue*> the_map;
-
-void printSpaces(int x) {
-	for (int i=0; i<x; ++i) {
-		cout << " ";
-	}
-}
 
 
 unordered_map<string, unsigned short> cache;
@@ -37,15 +30,9 @@ unsigned short stringToValue(const string &s) {
 		return cache[s];
 	} 
 	
-	//printSpaces(depth);
-	depth+=2;
-	//cout << "Looking for " << s << " depth " << depth << endl;
 	unsigned short out;
 	if (isdigit(s[0])) out = stoi(s);
 	else out = the_map[s]->getValue();
-	//printSpaces(depth);
-	depth-=2;
-	//cout << "Got: " << out << endl;
 	cache[s] = out;
 	return out;
 }
@@ -57,8 +44,6 @@ class IntValue : public WireValue {
 	public:
 	IntValue(int x) : val(x) {};
 	unsigned short getValue() {
-		//printSpaces(depth);
-		//cout << "Literal: " << val << endl;
 		return val; 
 	};
 };
