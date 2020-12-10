@@ -26,22 +26,32 @@ string int2pass(unsigned long long in) {
 }
 
 
+bool ok_password(const char *s) {
+	bool straight=false;
+	char pair1=0;
+	char pair2=0;
+
+	for (int i =0; i < strlen(s); ++i) {
+		if (s[i]=='i' || s[i]=='o' || s[i]=='l') return false;
+		if (i>1 && s[i-1] == s[i]-1 && s[i-2] == s[i]-2) straight = true;
+		if (!pair1 && i>0 && s[i] == s[i-1]) pair1 = s[i];		
+		if (pair1 && !pair2 && s[i] == s[i-1] && s[i] != pair1) pair2 = s[i];
+	}
+	return straight && pair1 && pair2;
+}
+
 
 int main() {
-	
 
-	unsigned long long count=0;
+	unsigned long long count=pass2int("hepxcrrq");
 	while(true) {
 		++count;
 		string x = int2pass(count);
-		unsigned long long int    y = pass2int(x);
-		
-		if (count % 1000000000 == 0) cout << (count*100)/208827064550 << ":" << y-count ;
+		if (ok_password(x.c_str())) {
+				cout << x  << endl;
+				return 1;
+		}
 	}
-	
-	
-	cout << pass2int("hepxcrrq") << endl;
-	cout << int2pass(57647112526) << endl;
 	
 	return 0;
 }
