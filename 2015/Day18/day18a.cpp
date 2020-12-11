@@ -31,10 +31,10 @@ vector<string> new_state() {
 		out.push_back("");
 		for (int j = 0; j < 100; ++j) {
 
-			if ((i == 0 || i == 99) && (j == 0 || j = 99)) {
-				out[i].push_back('#');
-				continue;
-			}
+			//if ((i == 0 || i == 99) && (j == 0 || j = 99)) {
+			//	out[i].push_back('#');
+			//	continue;
+			//}
 
 			int ns = count_neighn(i, j);
 			if (state[i][j] == '#')
