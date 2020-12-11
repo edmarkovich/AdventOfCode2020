@@ -30,6 +30,12 @@ vector<string> new_state() {
 	for (int i = 0; i < 100; ++i) {
 		out.push_back("");
 		for (int j = 0; j < 100; ++j) {
+
+			if ((i == 0 || i == 99) && (j == 0 || j = 99)) {
+				out[i].push_back('#');
+				continue;
+			}
+
 			int ns = count_neighn(i, j);
 			if (state[i][j] == '#')
 				if (ns == 2 || ns == 3) out[i].push_back('#'); else out[i].push_back('.');
